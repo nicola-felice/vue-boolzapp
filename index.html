@@ -15,7 +15,7 @@
     <div id="root" class="container">
         <div class="nav">
             <div class="user_info">
-                <img class="avatar_img" src="./img/avatar_io.jpg" alt="">
+                <img class="avatar_img" src="./img/avatar_4.jpg">
                 <span class="username">my name</span>
                 <i class="fas fa-circle-notch"></i>
                 <i class="fas fa-comment-alt"></i>
@@ -33,21 +33,9 @@
             <div class="contacts_list_wrapper">
                 <input type="text" id="search_contacts" placeholder="search contact">
                 <ol class="contacts_list">
-                    <li class="contact">
-                        <img class="avatar_img" src="./img/avatar_1.jpg" alt="">
-                        <span class="username">nome contatto</span>
-                    </li>
-                    <li class="contact">
-                        <img class="avatar_img" src="./img/avatar_1.jpg" alt="">
-                        <span class="username">nome contatto</span>
-                    </li>
-                    <li class="contact">
-                        <img class="avatar_img" src="./img/avatar_1.jpg" alt="">
-                        <span class="username">nome contatto</span>
-                    </li>
-                    <li class="contact">
-                        <img class="avatar_img" src="./img/avatar_1.jpg" alt="">
-                        <span class="username">nome contatto</span>
+                    <li v-for="(elm) in contacts" class="contact">
+                        <img class="avatar_img" :src="getUrl(elm)" alt="">
+                        <span class="username">{{elm.name}}</span>
                     </li>
                 </ol>
             </div>

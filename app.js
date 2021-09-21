@@ -71,7 +71,7 @@ const app = new Vue({
             },
             {
                 name: 'Luisa',
-                avatar: '_4',
+                avatar: '_io',
                 visible: true,
                 messages: [
                     {
@@ -90,6 +90,8 @@ const app = new Vue({
     },
 
     methods: {
-
+        getUrl: function(elm) {
+            return `./img/avatar${elm.avatar}.jpg`;
+        },
     },
 });
