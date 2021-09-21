@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>whatsapp web clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="root" class="container">
+        <div class="nav">
+            <div class="user_info">
+                <img class="avatar_img" src="./img/avatar_io.jpg" alt="">
+                <span class="username">my name</span>
+                <i class="fas fa-circle-notch"></i>
+                <i class="fas fa-comment-alt"></i>
+                <i class="fas fa-ellipsis-v"></i>
+            </div>
+
+            <div class="banner_notifications">
+                <i class="fas fa-bell-slash"></i>
+                <span>
+                    Ricevi notifiche di nuovi messaggi <br> 
+                    <a href="#">attiva notofiche desktop</a>
+                </span>
+            </div>
+
+            <div class="contacts_list_wrapper">
+                <input type="text" id="search_contacts" placeholder="search contact">
+                <ol class="contacts_list">
+                    <li class="contact">
+                        <img class="avatar_img" src="./img/avatar_1.jpg" alt="">
+                        <span class="username">nome contatto</span>
+                    </li>
+                    <li class="contact">
+                        <img class="avatar_img" src="./img/avatar_1.jpg" alt="">
+                        <span class="username">nome contatto</span>
+                    </li>
+                    <li class="contact">
+                        <img class="avatar_img" src="./img/avatar_1.jpg" alt="">
+                        <span class="username">nome contatto</span>
+                    </li>
+                    <li class="contact">
+                        <img class="avatar_img" src="./img/avatar_1.jpg" alt="">
+                        <span class="username">nome contatto</span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="chat"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

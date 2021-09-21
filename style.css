@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    height: 100vh;
+    font-family: 'Lato', sans-serif;
+    background: rgb(217,219,212);
+    background: linear-gradient(0deg, rgba(217,219,212,1) 85%, rgba(0,150,136,1) 85%); 
+}
+li {
+    list-style: none;
+}
+
+.container {
+    display: flex;
+    width: 70%;
+    height: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem 0;
+}
+.avatar_img {
+    max-width: 45px;
+    border-radius: 50%;
+}
+.username {
+    text-transform: capitalize;
+}
+
+
+/* _______ LEFT NAVIGATION _______ */
+.nav {
+    width: 30%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.user_info {
+    display: flex;
+    align-items: center;
+    padding: .2rem .5rem;
+    background-color: #eaeaea;
+}
+.user_info * {
+    margin: .35rem;
+}
+.user_info span {
+    margin-right: auto;
+}
+.user_info img {
+    max-width: 38px;
+}
+.user_info i {
+    color: #b1b1b1;
+    margin: 0 .5rem;
+    cursor: pointer;
+}
+
+
+.banner_notifications {
+    display: flex;
+    align-items: center;
+    padding: .85rem 1.2rem;
+    background-color: #8edafc;
+}
+.banner_notifications i {
+    font-size: 1.2rem;
+    margin-right: .4rem;
+    background-color: white;
+    border-radius: 50%;
+    color: #8edafc;
+    padding: .7rem;
+}
+.banner_notifications span {
+    font-size: .85rem;
+}
+
+
+.contacts_list_wrapper {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.contacts_list {
+    overflow-y: auto;
+}
+.contact {
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+    border-bottom: 1px #f1f1f1 solid;
+    cursor: pointer;
+}
+.contact img {
+    margin-right: .85rem;
+}
+#search_contacts {
+    padding: .5rem 0;
+    padding-left: 3rem;
+    margin: .5rem;
+    border: 1px #f1f1f1 solid;
+
+    background-color: white;
+    background-image: url('./img/search\(1\).png');
+    background-position: 5%;
+    background-size: 7%;
+    background-repeat: no-repeat;
+}
+/* _______ END LEFT NAVIGATION _______ */
+
+
+.chat {
+    width: 70%;
+    background-color: burlywood;
+}
