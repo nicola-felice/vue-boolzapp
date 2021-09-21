@@ -115,7 +115,91 @@ li {
 /* _______ END LEFT NAVIGATION _______ */
 
 
-.chat {
+/* _______ CHAT _______ */
+.chat_wrapper {
     width: 70%;
-    background-color: burlywood;
+    display: flex;
+    flex-direction: column;
 }
+
+
+.contact_info {
+    display: flex;
+    align-items: center;
+    padding: .2rem .5rem;
+    background-color: #eaeaea;
+    border-left: 1px #d6d6d6 solid;
+}
+.contact_info span {
+    margin-right: auto;
+}
+.contact_info i {
+    color: #b1b1b1;
+    margin: 0 .5rem;
+    cursor: pointer;
+}
+.contact_info em {
+    font-size: .75rem;
+    font-style: normal;
+    text-transform: none;
+}
+.contact_info * {
+    margin: .15rem;
+}
+
+
+.chat {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2rem 0 2rem;
+    overflow-y: auto;
+    background-image: url('./img/mine.jpg');
+}
+.message {
+    padding: .45rem 1rem;
+    align-self: flex-start;
+    margin: .5rem 1rem;
+    border-radius: .75rem;
+}
+.message span {
+    display: block;
+    font-size: .75rem;
+    color: grey;
+    text-align: right;
+    margin-top: .2rem;
+}
+.message.sent {
+    background-color: #d5f9ba;
+    align-self: flex-end;
+}
+.message.received {
+    background-color: white;
+}
+
+
+.input_message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .2rem 1.75rem;
+    background-color: #eaeaea;
+    border-left: 1px #d6d6d6 solid;
+}
+.input_message i {
+    color: #6b7376;
+    margin: 0 .5rem;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+#text_message {
+    flex-grow: 1;
+    padding: .75rem;
+    border: none;
+    border-radius: .25rem;
+    margin: .5rem;
+}
+.input_message * {
+    margin: .35rem;
+}
+/* _______ END CHAT _______ */
