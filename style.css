@@ -147,6 +147,20 @@ li {
     margin: .15rem;
 }
 
+/* if no chat is selected */
+.stay_connected {
+    background-color: #222f37;
+    padding: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.stay_connected img {
+    width: 350px;
+    display: block;
+    margin-bottom: 1rem;
+}
 
 .chat {
     flex-grow: 1;

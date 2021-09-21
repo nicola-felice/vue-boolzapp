@@ -87,11 +87,19 @@ const app = new Vue({
                 ],
             },
         ],
+
+        newMessageInput: '',
+
+        activeContact: '',
     },
 
     methods: {
         getUrl: function(elm) {
             return `./img/avatar${elm.avatar}.jpg`;
+        },
+
+        displayChat: function(elm) {
+            this.activeContact = elm;
         },
     },
 });

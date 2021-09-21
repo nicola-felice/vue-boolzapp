@@ -33,7 +33,7 @@
             <div class="contacts_list_wrapper">
                 <input type="text" id="search_contacts" placeholder="search contact">
                 <ol class="contacts_list">
-                    <li v-for="(elm) in contacts" class="contact">
+                    <li @click="displayChat(elm)" v-for="(elm) in contacts" class="contact">
                         <img class="avatar_img" :src="getUrl(elm)" alt="">
                         <span class="username">{{elm.name}}</span>
                     </li>
@@ -41,11 +41,16 @@
             </div>
         </div>
 
-        <div class="chat_wrapper">
+        <div v-if="activeContact == ''" class="chat_wrapper stay_connected">
+            <img src="./img/keep_yout_phone_connected.jpg" alt="">
+            <h2>Keep Your Phone Connected!</h2>
+        </div>
+
+        <div v-else class="chat_wrapper">
             <div class="contact_info">
-                <img class="avatar_img" src="./img/avatar_1.jpg" alt="">
+                <img class="avatar_img" :src="getUrl(activeContact)" alt="">
                 <span class="username">
-                    nome cognome <br> 
+                    {{activeContact.name}} <br> 
                     <em>Ultimo accesso alle 12:00</em>
                 </span>
                 <i class="fas fa-search"></i>
@@ -54,60 +59,17 @@
             </div>
 
             <ul class="chat">
-                <li class="message received">
-                    ciao, hai fatto la spesa?
-                    <span class="date">13:24</span>
-                </li>
-                <li class="message received">
-                    ciao, hai fatto la spesa?
-                    <span class="date">13:24</span>
-                </li>
-                <li class="message sent">
-                    ciao, hai fatto la spesa?
-                    <span class="date">13:24</span>
-                </li>
-                <li class="message sent">
-                    ciao, hai fatto la spesa?
-                    <span class="date">13:24</span>
-                </li>
-                <li class="message received">
-                    ciao, hai fatto la spesa?
-                    <span class="date">13:24</span>
-                </li>
-                <li class="message sent">
-                    ciao, hai fatto la spesa?
-                    <span class="date">13:24</span>
-                </li>
-                <li class="message received">
-                    ciao, hai fatto la spesa?
-                    <span class="date">13:24</span>
-                </li>
-                <li class="message received">
-                    ciao, hai fatto la spesa?
-                    <span class="date">13:24</span>
-                </li>
-                <li class="message sent">
-                    ciao, hai fatto la spesa?
-                    <span class="date">13:24</span>
-                </li>
-                <li class="message sent">
-                    ciao, hai fatto la spesa?
-                    <span class="date">13:24</span>
-                </li>
-                <li class="message received">
-                    ciao, hai fatto la spesa?
-                    <span class="date">13:24</span>
-                </li>
-                <li class="message sent">
-                    ciao, hai fatto la spesa?
-                    <span class="date">13:24</span>
+                <li v-for="(elm) in activeContact.messages" :class="elm.status" class="message">
+                    {{elm.message}}
+                    <span class="date">{{elm.date}}</span>
                 </li>
             </ul>
 
             <div class="input_message">
                 <i class="far fa-smile"></i>
-                <input type="text" id="text_message" placeholder="inserisci il tuo messaggio">
-                <i class="fas fa-microphone"></i>
+                <input v-model="newMessageInput" type="text" id="text_message" placeholder="inserisci il tuo messaggio">
+                <i v-if="newMessageInput == ''" class="fas fa-microphone"></i>
+                <i v-else class="fas fa-paper-plane"></i>
             </div>
         </div>
     </div>
