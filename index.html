@@ -13,6 +13,7 @@
 </head>
 <body>
     <div id="root" class="container">
+        <!-- left navigation -->
         <div class="nav">
             <div class="user_info">
                 <img class="avatar_img" src="./img/avatar_4.jpg">
@@ -31,24 +32,27 @@
             </div>
 
             <div class="contacts_list_wrapper">
-                <input type="text" id="search_contacts" placeholder="search contact">
+                <input v-model="searchContactsInput" type="text" id="search_contacts" placeholder="search contact">
                 <ol class="contacts_list">
-                    <li @click="displayChat(elm)" v-for="(elm) in contacts" class="contact">
-                        <img class="avatar_img" :src="getUrl(elm)" alt="">
+                    <li @click="displayChat(elm)" v-for="(elm) in contacts" v-if="elm.visible == true" class="contact">
+                        <img class="avatar_img" :src="`./img/avatar${elm.avatar}.jpg`" alt="">
                         <span class="username">{{elm.name}}</span>
                     </li>
                 </ol>
             </div>
         </div>
 
+
+        <!-- before selecting a chat -->
         <div v-if="activeContact == ''" class="chat_wrapper stay_connected">
             <img src="./img/keep_yout_phone_connected.jpg" alt="">
             <h2>Keep Your Phone Connected!</h2>
         </div>
 
+        <!-- when you select a chat -->
         <div v-else class="chat_wrapper">
             <div class="contact_info">
-                <img class="avatar_img" :src="getUrl(activeContact)" alt="">
+                <img class="avatar_img" :src="`./img/avatar${activeContact.avatar}.jpg`" alt="">
                 <span class="username">
                     {{activeContact.name}} <br> 
                     <em>Ultimo accesso alle 12:00</em>
@@ -69,11 +73,12 @@
                 <i class="far fa-smile"></i>
                 <input v-model="newMessageInput" type="text" id="text_message" placeholder="inserisci il tuo messaggio">
                 <i v-if="newMessageInput == ''" class="fas fa-microphone"></i>
-                <i v-else class="fas fa-paper-plane"></i>
+                <i v-else @click="sendMessage()" class="fas fa-paper-plane"></i>
             </div>
         </div>
     </div>
 
+    
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="app.js"></script>
 </body>

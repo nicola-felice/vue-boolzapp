@@ -38,6 +38,8 @@ li {
     background-color: white;
     display: flex;
     flex-direction: column;
+    border-radius: .75rem 0 0 .75rem;
+    overflow: hidden;
 }
 
 .user_info {
@@ -96,6 +98,10 @@ li {
     padding: .5rem;
     border-bottom: 1px #f1f1f1 solid;
     cursor: pointer;
+    transition: 200ms all;
+}
+.contact:hover {
+    background-color: rgb(224, 224, 224);
 }
 .contact img {
     margin-right: .85rem;
@@ -115,11 +121,13 @@ li {
 /* _______ END LEFT NAVIGATION _______ */
 
 
-/* _______ CHAT _______ */
+/* _______ CHAT WRAPPER _______ */
 .chat_wrapper {
     width: 70%;
     display: flex;
     flex-direction: column;
+    border-radius: 0 .75rem .75rem 0;
+    overflow: hidden;
 }
 
 
@@ -216,4 +224,4 @@ li {
 .input_message * {
     margin: .35rem;
 }
-/* _______ END CHAT _______ */
+/* _______ END CHAT WRAPPER _______ */

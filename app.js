@@ -91,15 +91,65 @@ const app = new Vue({
         newMessageInput: '',
 
         activeContact: '',
+
+        searchContactsInput: '',
+    },
+
+    watch: {
+        // search contacts
+        searchContactsInput: function() {
+            let inputSearch = this.searchContactsInput.toLowerCase();
+
+            this.contacts.forEach( (elm) => {
+                let name = elm.name.toLowerCase();
+
+                if ( !name.includes( inputSearch ) ) {
+                    elm.visible = false;
+                } else {
+                    elm.visible = true;
+                }
+            });
+        },
     },
 
     methods: {
-        getUrl: function(elm) {
-            return `./img/avatar${elm.avatar}.jpg`;
-        },
-
         displayChat: function(elm) {
             this.activeContact = elm;
         },
+
+        sendMessage: function() {
+            let date = new Date();
+            let messageTime = `${date.getHours()}:${date.getMinutes()}`;
+
+            this.activeContact.messages.push( 
+                {
+                    date: messageTime,
+                    message: this.newMessageInput,
+                    status: 'sent',
+                }
+            );
+
+            this.newMessageInput = '';
+
+            // auto reply to message
+            setTimeout( () => {
+                this.activeContact.messages.push( 
+                    {
+                        date: messageTime,
+                        message: 'ok',
+                        status: 'received',
+                    }
+                );                
+            }, 1000);
+
+        },
+    },
+
+    mounted: function() {
+        document.addEventListener('keydown', (event) => {
+            if ( event.key == 'Enter' && this.newMessageInput != '' ) {
+                this.sendMessage();
+            }
+        });
     },
 });
