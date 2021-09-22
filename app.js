@@ -82,7 +82,7 @@ const app = new Vue({
                     {
                         date: '10/01/2020 15:50:00',
                         message: 'Si, ma preferirei andare al cinema',
-                        status: 'received'
+                        status: 'received',
                     }
                 ],
             },
@@ -110,11 +110,18 @@ const app = new Vue({
                 }
             });
         },
+
+        contacts: function() {
+            return true;
+        }
     },
 
     methods: {
         displayChat: function(elm) {
             this.activeContact = elm;
+
+            // auto scroll to the bottom of the chat 
+            setTimeout( () => {this.scrollToBottomChat()},0); 
         },
 
         sendMessage: function() {
@@ -139,9 +146,35 @@ const app = new Vue({
                         message: 'ok',
                         status: 'received',
                     }
-                );                
-            }, 1000);
+                );   
 
+                // auto scroll to the bottom of the chat 
+                setTimeout( () => {this.scrollToBottomChat()},0);             
+            }, 1000);
+        },
+
+        deleteMessage: function(id) {
+            this.activeContact.messages.splice(id, 1);
+        },
+
+        showOptionsMessage: function(elm) {
+            // hide prev open option dropdown
+            this.contacts.forEach( (contact) => {
+                contact.messages.forEach( (message) => {
+                    message.showDropdown = false;
+                });
+            });
+
+            // show options for message
+            if ( elm != undefined ) {
+                elm.showDropdown = true;
+            }
+            this.$forceUpdate();
+        },
+
+        scrollToBottomChat: function() {
+            const chat = document.querySelector(".chat");
+            chat.scrollTop = chat.scrollHeight;
         },
     },
 
@@ -149,6 +182,14 @@ const app = new Vue({
         document.addEventListener('keydown', (event) => {
             if ( event.key == 'Enter' && this.newMessageInput != '' ) {
                 this.sendMessage();
+            }
+        });
+
+
+        // hide message option when change focus
+        document.addEventListener('click', (event) => {
+            if ( !event.target.classList.contains('messageFocus') ) {
+                this.showOptionsMessage();
             }
         });
     },

@@ -183,6 +183,8 @@ li {
     align-self: flex-start;
     margin: .5rem 1rem;
     border-radius: .75rem;
+    position: relative;
+    cursor: pointer;
 }
 .message span {
     display: block;
@@ -197,6 +199,23 @@ li {
 }
 .message.received {
     background-color: white;
+}
+/* options message dropdown */
+#options_message {
+    position: absolute;
+    top: 80%;
+    right: 0;
+    z-index: 99999;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1);
+    border-radius: .25rem;
+}
+.option_message {
+    cursor: pointer;
+    padding: .5rem;
+}
+.option_message:hover {
+    background-color: rgb(206, 206, 206);
 }
 
 

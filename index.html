@@ -63,9 +63,15 @@
             </div>
 
             <ul class="chat">
-                <li v-for="(elm) in activeContact.messages" :class="elm.status" class="message">
+                <li @click="showOptionsMessage(elm)" v-for="(elm, index) in activeContact.messages" :key="index" :class="elm.status" class="message messageFocus">
                     {{elm.message}}
-                    <span class="date">{{elm.date}}</span>
+                    <span class="date messageFocus">{{elm.date}}</span>
+
+                    <!-- dropdown message options -->
+                    <div v-if="elm.showDropdown" class="options_message" name="optionsMessage" id="options_message">
+                        <div class="option_message">Info</div>
+                        <div @click="deleteMessage(index)" class="option_message">Cancella</div>
+                    </div>
                 </li>
             </ul>
 
