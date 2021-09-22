@@ -9,7 +9,7 @@ body {
     height: 100vh;
     font-family: 'Lato', sans-serif;
     background: rgb(217,219,212);
-    background: linear-gradient(0deg, rgba(217,219,212,1) 85%, rgba(0,150,136,1) 85%); 
+    background: linear-gradient(0deg, rgba(217,219,212,1) 80%, rgba(0,150,136,1) 80%); 
 }
 li {
     list-style: none;
@@ -21,7 +21,7 @@ li {
     height: 100%;
     max-width: 1200px;
     margin: auto;
-    padding: 2rem 0;
+    padding: 4% 0;
 }
 .avatar_img {
     max-width: 45px;
@@ -185,6 +185,7 @@ li {
     border-radius: .75rem;
     position: relative;
     cursor: pointer;
+    max-width: 45%;
 }
 .message span {
     display: block;
@@ -223,9 +224,11 @@ li {
     display: flex;
     align-items: center;
     justify-content: center;
+
     padding: .2rem 1.75rem;
     background-color: #eaeaea;
     border-left: 1px #d6d6d6 solid;
+    position: relative;
 }
 .input_message i {
     color: #6b7376;
@@ -242,5 +245,26 @@ li {
 }
 .input_message * {
     margin: .35rem;
+}
+
+/* smile input */
+.smile_input {
+    margin: 0;
+    background-color: #eaeaea;
+    min-height: 100px;
+    padding: 1.5rem;
+    border-bottom: 1px #d6d6d6 solid;
+    border-top: 1px #d6d6d6 solid;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+.smile_input .emoticon {
+    font-size: 1.7rem;
+    width: 40px;
+    cursor: pointer;
 }
 /* _______ END CHAT WRAPPER _______ */

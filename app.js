@@ -88,11 +88,75 @@ const app = new Vue({
             },
         ],
 
+        emoticons: [
+            {
+                id: 0,
+                code: '😀',
+            },
+            {
+                id: 1,
+                code: '😁',
+            },
+            {
+                id: 2,
+                code: '😂',
+            },
+            {
+                id: 3,
+                code: '😃',
+            },
+            {
+                id: 4,
+                code: '😄',
+            },
+            {
+                id: 5,
+                code: '😅',
+            },
+            {
+                id: 6,
+                code: '😆',
+            },
+            {
+                id: 7,
+                code: '😇',
+            },
+            {
+                id: 8,
+                code: '😈',
+            },
+            {
+                id: 9,
+                code: '😉',
+            },
+            {
+                id: 10,
+                code: '😊',
+            },
+            {
+                id: 11,
+                code: '😋',
+            },
+            {
+                id: 12,
+                code: '😌',
+            },
+            {
+                id: 13,
+                code: '😍',
+            },
+            
+        ],
+
         newMessageInput: '',
 
         activeContact: '',
 
         searchContactsInput: '',
+
+        isSmileInputVisible: false,
+
+        cursorPosition: null,
     },
 
     watch: {
@@ -134,6 +198,8 @@ const app = new Vue({
 
             this.newMessageInput = '';
 
+            this.isSmileInputVisible = false; 
+
             // auto reply to message
             setTimeout( () => {
                 this.activeContact.messages.push( 
@@ -168,9 +234,27 @@ const app = new Vue({
             this.$forceUpdate();
         },
 
+        addSmileToMessage: function(elm) {
+
+            const spliceStr = (str, index, stringToAdd) => {
+                return str.substring(0, index) + stringToAdd + str.substring(index, str.length);
+            }
+
+            this.newMessageInput = spliceStr( this.newMessageInput, this.cursorPosition, elm.code );
+
+        },
+
+        showSmileInput: function() {
+            (this.isSmileInputVisible) ? this.isSmileInputVisible = false : this.isSmileInputVisible = true;
+        },
+
         scrollToBottomChat: function() {
             const chat = document.querySelector(".chat");
             chat.scrollTop = chat.scrollHeight;
+        },
+
+        saveCursorPosition: function() {
+            this.cursorPosition = document.getElementById("text_message").selectionEnd;            
         },
     },
 

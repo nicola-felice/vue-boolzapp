@@ -75,9 +75,13 @@
                 </li>
             </ul>
 
+            <div v-if="isSmileInputVisible" class="smile_input">
+                <div @click="addSmileToMessage(elm)" v-for="(elm, index) in emoticons" :key="index" class="emoticon">{{elm.code}}</div>
+            </div>
+
             <div class="input_message">
-                <i class="far fa-smile"></i>
-                <input v-model="newMessageInput" type="text" id="text_message" placeholder="inserisci il tuo messaggio">
+                <i @click="showSmileInput()" class="far fa-smile"></i>
+                <input @click="saveCursorPosition()" v-model="newMessageInput" type="text" id="text_message" placeholder="inserisci il tuo messaggio">
                 <i v-if="newMessageInput == ''" class="fas fa-microphone"></i>
                 <i v-else @click="sendMessage()" class="fas fa-paper-plane"></i>
             </div>
