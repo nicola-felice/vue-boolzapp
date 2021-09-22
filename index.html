@@ -81,7 +81,7 @@
 
             <div class="input_message">
                 <i @click="showSmileInput()" class="far fa-smile"></i>
-                <input @click="saveCursorPosition()" v-model="newMessageInput" type="text" id="text_message" placeholder="inserisci il tuo messaggio">
+                <input @keyup="saveCursorPosition()" @click="saveCursorPosition()" v-model="newMessageInput" type="text" id="text_message" placeholder="inserisci il tuo messaggio">
                 <i v-if="newMessageInput == ''" class="fas fa-microphone"></i>
                 <i v-else @click="sendMessage()" class="fas fa-paper-plane"></i>
             </div>
