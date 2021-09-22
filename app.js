@@ -110,10 +110,6 @@ const app = new Vue({
                 }
             });
         },
-
-        contacts: function() {
-            return true;
-        }
     },
 
     methods: {
