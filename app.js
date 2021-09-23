@@ -232,7 +232,7 @@ const app = new Vue({
             // hide prev open option dropdown
             this.contacts.forEach( (contact) => {
                 contact.messages.forEach( (message) => {
-                    message.showDropdown = false;
+                    Vue.set(message, 'showDropdown', false);
                 });
             });
 
