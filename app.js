@@ -240,7 +240,6 @@ const app = new Vue({
             if ( elm != undefined ) {
                 elm.showDropdown = true;
             }
-            this.$forceUpdate();
         },
 
         addSmileToMessage: function(elm) {
@@ -265,6 +264,14 @@ const app = new Vue({
         saveCursorPosition: function() {
             this.cursorPosition = document.getElementById("text_message").selectionEnd;            
         },
+    },
+
+    created: function() {
+        this.contacts.forEach( (contact) => {
+            contact.messages.forEach( (message) => {
+                Vue.set(message, 'showDropdown', false);
+            });
+        });
     },
 
     mounted: function() {
