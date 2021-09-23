@@ -196,6 +196,15 @@ const app = new Vue({
                 }
             );
 
+            // if message is only an emoticon => add propriety onlyEmoticon : true
+            if ( this.newMessageInput.length == 2 ) {
+                this.emoticons.forEach( (elm) => {
+                    if ( elm.code == this.newMessageInput ) {
+                        this.activeContact.messages.at(-1).onlyEmoticon = true;
+                    }
+                });
+            }
+
             this.newMessageInput = '';
 
             this.isSmileInputVisible = false; 
@@ -259,12 +268,12 @@ const app = new Vue({
     },
 
     mounted: function() {
+        // send message when press enter
         document.addEventListener('keydown', (event) => {
             if ( event.key == 'Enter' && this.newMessageInput != '' ) {
                 this.sendMessage();
             }
         });
-
 
         // hide message option when change focus
         document.addEventListener('click', (event) => {

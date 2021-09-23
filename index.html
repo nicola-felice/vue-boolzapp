@@ -62,8 +62,9 @@
                 <i class="fas fa-ellipsis-v"></i>
             </div>
 
+            <!-- chat wrapper -->
             <ul class="chat">
-                <li @click="showOptionsMessage(elm)" v-for="(elm, index) in activeContact.messages" :key="index" :class="elm.status" class="message messageFocus">
+                <li @click="showOptionsMessage(elm)" v-for="(elm, index) in activeContact.messages" :key="index" :class="[elm.status, (elm.onlyEmoticon)? 'bigger' : '']" class="message messageFocus">
                     {{elm.message}}
                     <span class="date messageFocus">{{elm.date}}</span>
 
@@ -75,12 +76,14 @@
                 </li>
             </ul>
 
+            <!-- smile menu input -->
             <div v-if="isSmileInputVisible" class="smile_input">
                 <div @click="addSmileToMessage(elm)" v-for="(elm, index) in emoticons" :key="index" class="emoticon">{{elm.code}}</div>
             </div>
 
+            <!-- message input -->
             <div class="input_message">
-                <i @click="showSmileInput()" class="far fa-smile"></i>
+                <i @click="showSmileInput()" :class="(isSmileInputVisible) ? 'active' : null" class="far fa-smile show_emoticons"></i>
                 <input @keyup="saveCursorPosition()" @click="saveCursorPosition()" v-model="newMessageInput" type="text" id="text_message" placeholder="inserisci il tuo messaggio">
                 <i v-if="newMessageInput == ''" class="fas fa-microphone"></i>
                 <i v-else @click="sendMessage()" class="fas fa-paper-plane"></i>

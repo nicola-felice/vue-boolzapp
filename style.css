@@ -9,7 +9,7 @@ body {
     height: 100vh;
     font-family: 'Lato', sans-serif;
     background: rgb(217,219,212);
-    background: linear-gradient(0deg, rgba(217,219,212,1) 80%, rgba(0,150,136,1) 80%); 
+    background: linear-gradient(0deg, rgba(217,219,212,1) 80%, #009688 80%); 
 }
 li {
     list-style: none;
@@ -201,6 +201,9 @@ li {
 .message.received {
     background-color: white;
 }
+.message.bigger {
+    font-size: 2rem;
+}
 /* options message dropdown */
 #options_message {
     position: absolute;
@@ -210,6 +213,7 @@ li {
     background-color: rgb(255, 255, 255);
     box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.1);
     border-radius: .25rem;
+    font-size: 1rem;
 }
 .option_message {
     cursor: pointer;
@@ -245,6 +249,9 @@ li {
 }
 .input_message * {
     margin: .35rem;
+}
+.show_emoticons.active {
+    color: #5cb5df;
 }
 
 /* smile input */
