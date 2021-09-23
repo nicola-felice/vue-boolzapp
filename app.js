@@ -266,14 +266,6 @@ const app = new Vue({
         },
     },
 
-    created: function() {
-        this.contacts.forEach( (contact) => {
-            contact.messages.forEach( (message) => {
-                Vue.set(message, 'showDropdown', false);
-            });
-        });
-    },
-
     mounted: function() {
         // send message when press enter
         document.addEventListener('keydown', (event) => {
