@@ -64,9 +64,21 @@
 
             <!-- chat wrapper -->
             <ul class="chat">
-                <li @click="showOptionsMessage(elm)" v-for="(elm, index) in activeContact.messages" :key="index" :class="[elm.status, (elm.onlyEmoticon)? 'bigger' : '']" class="message messageFocus">
-                    {{elm.message}}
-                    <span class="date messageFocus">{{elm.date}}</span>
+                <li @click="showOptionsMessage(elm)" 
+                    v-for="(elm, index) in activeContact.messages" 
+                    :key="index" 
+                    :class="[elm.status, (elm.onlyEmoticon)? 'bigger' : '']" 
+                    class="message messageFocus">
+                    <!-- audio message -->
+                    <div v-if="elm.audioSRC != undefined" class="messageFocus">
+                        <audio controls :src="elm.audioSRC">ciao</audio>
+                        <span class="messageFocus" class="date">{{elm.date}}</span>                        
+                    </div>
+                    <!-- text message -->
+                    <div v-else class="messageFocus">
+                        {{elm.message}}
+                        <span class="messageFocus" class="date">{{elm.date}}</span>                        
+                    </div>
 
                     <!-- dropdown message options -->
                     <div v-if="elm.showDropdown" class="options_message" name="optionsMessage" id="options_message">
@@ -85,8 +97,11 @@
             <div class="input_message">
                 <i @click="showSmileInput()" :class="(isSmileInputVisible) ? 'active' : null" class="far fa-smile show_emoticons"></i>
                 <input @keyup="saveCursorPosition()" @click="saveCursorPosition()" v-model="newMessageInput" type="text" id="text_message" placeholder="inserisci il tuo messaggio">
-                <i v-if="newMessageInput == ''" class="fas fa-microphone"></i>
-                <i v-else @click="sendMessage()" class="fas fa-paper-plane"></i>
+                <i  @click="(isAudioRecording)? stopRecording() : recordAudio()" 
+                    :class="(isAudioRecording)? 'recording' : null" 
+                    v-if="newMessageInput == ''" 
+                    class="fas fa-microphone"></i>
+                <i v-else @click="sendTextMessage()" class="fas fa-paper-plane"></i>
             </div>
         </div>
     </div>

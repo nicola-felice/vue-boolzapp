@@ -14,6 +14,9 @@ body {
 li {
     list-style: none;
 }
+audio {
+    border-radius: .75rem;
+}
 
 .container {
     display: flex;
@@ -185,7 +188,7 @@ li {
     border-radius: .75rem;
     position: relative;
     cursor: pointer;
-    max-width: 45%;
+    max-width: 75%;
 }
 .message span {
     display: block;
@@ -252,6 +255,9 @@ li {
 }
 .show_emoticons.active {
     color: #5cb5df;
+}
+.fa-microphone.recording {
+    color: #b30000;
 }
 
 /* smile input */

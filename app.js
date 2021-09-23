@@ -157,6 +157,10 @@ const app = new Vue({
         isSmileInputVisible: false,
 
         cursorPosition: null,
+
+        recorder: null,
+        chunks: [],
+        isAudioRecording: false,
     },
 
     watch: {
@@ -184,29 +188,15 @@ const app = new Vue({
             setTimeout( () => {this.scrollToBottomChat()},0); 
         },
 
-        sendMessage: function() {
+        sendMessage: function(obj) {
             let date = new Date();
             let messageTime = `${date.getHours()}:${date.getMinutes()}`;
 
-            this.activeContact.messages.push( 
-                {
-                    date: messageTime,
-                    message: this.newMessageInput,
-                    status: 'sent',
-                }
-            );
+            obj.date = messageTime;
 
-            // if message is only an emoticon => add propriety onlyEmoticon : true
-            if ( this.newMessageInput.length == 2 ) {
-                this.emoticons.forEach( (elm) => {
-                    if ( elm.code == this.newMessageInput ) {
-                        this.activeContact.messages.at(-1).onlyEmoticon = true;
-                    }
-                });
-            }
+            this.activeContact.messages.push( obj );
 
             this.newMessageInput = '';
-
             this.isSmileInputVisible = false; 
 
             // auto reply to message
@@ -222,6 +212,25 @@ const app = new Vue({
                 // auto scroll to the bottom of the chat 
                 setTimeout( () => {this.scrollToBottomChat()},0);             
             }, 1000);
+        },
+
+        sendTextMessage: function() {
+
+            let newMessage = {
+                message: this.newMessageInput,
+                status: 'sent',
+            };
+
+            // if message is only an emoticon => add propriety onlyEmoticon : true
+            if ( this.newMessageInput.length == 2 ) {
+                this.emoticons.forEach( (elm) => {
+                    if ( elm.code == this.newMessageInput ) {
+                        newMessage.onlyEmoticon = true;
+                    }
+                });
+            }
+
+            this.sendMessage(newMessage);
         },
 
         deleteMessage: function(id) {
@@ -264,13 +273,44 @@ const app = new Vue({
         saveCursorPosition: function() {
             this.cursorPosition = document.getElementById("text_message").selectionEnd;            
         },
+
+        recordAudio: function() {
+            let device = navigator.mediaDevices.getUserMedia({ audio: true });
+            device.then((stream) => {
+                this.recorder = new MediaRecorder(stream);
+                this.recorder.start();
+                this.recorder.ondataavailable = (event) => {
+                    this.chunks.push(event.data);
+                }
+            });
+            this.isAudioRecording = true;
+        },
+
+        stopRecording: function() {
+            let audioURL;
+
+            this.recorder.stop();
+            this.recorder.onstop = () => {
+                let blob = new Blob(this.chunks, { 'type' : 'audio/mp3;' });
+                audioURL = window.URL.createObjectURL(blob);
+                this.chunks = [];
+
+                let newMessage = {
+                    status: 'sent',
+                    audioSRC: audioURL,
+                };
+
+                this.isAudioRecording = false;
+                this.sendMessage(newMessage);
+            }
+        },
     },
 
     mounted: function() {
         // send message when press enter
         document.addEventListener('keydown', (event) => {
             if ( event.key == 'Enter' && this.newMessageInput != '' ) {
-                this.sendMessage();
+                this.sendTextMessage();
             }
         });
 
