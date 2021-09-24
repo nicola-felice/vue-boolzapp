@@ -95,13 +95,16 @@
 
             <!-- message input -->
             <div class="input_message">
-                <i @click="showSmileInput()" :class="(isSmileInputVisible) ? 'active' : null" class="far fa-smile show_emoticons"></i>
+                <i @click="showSmileInput()" :class="(isSmileInputVisible) ? 'active' : null" class="far fa-grin-beam show_emoticons"></i>
                 <input @keyup="saveCursorPosition()" @click="saveCursorPosition()" v-model="newMessageInput" type="text" id="text_message" placeholder="inserisci il tuo messaggio">
                 <i  @click="(isAudioRecording)? stopRecording() : recordAudio()" 
                     :class="(isAudioRecording)? 'recording' : null" 
                     v-if="newMessageInput == ''" 
                     class="fas fa-microphone"></i>
-                <i v-else @click="sendTextMessage()" class="fas fa-paper-plane"></i>
+                <i v-else @click="printTextMessage()" class="fas fa-paper-plane"></i>
+                <div v-if="showRecordAudioPopup" class="record_audio_popup">
+                    Clicca per inviare <br> un messaggio audio!
+                </div>
             </div>
         </div>
     </div>

@@ -161,6 +161,8 @@ const app = new Vue({
         recorder: null,
         chunks: [],
         isAudioRecording: false,
+
+        showRecordAudioPopup: true,
     },
 
     watch: {
@@ -207,14 +209,11 @@ const app = new Vue({
                         message: 'ok',
                         status: 'received',
                     }
-                );   
-
-                // auto scroll to the bottom of the chat 
-                setTimeout( () => {this.scrollToBottomChat()},0);             
+                );              
             }, 1000);
         },
 
-        sendTextMessage: function() {
+        printTextMessage: function() {
 
             let newMessage = {
                 message: this.newMessageInput,
@@ -306,11 +305,11 @@ const app = new Vue({
         },
     },
 
-    mounted: function() {
+    mounted() {
         // send message when press enter
         document.addEventListener('keydown', (event) => {
             if ( event.key == 'Enter' && this.newMessageInput != '' ) {
-                this.sendTextMessage();
+                this.printTextMessage();
             }
         });
 
@@ -320,5 +319,15 @@ const app = new Vue({
                 this.showOptionsMessage();
             }
         });
+
+        document.querySelector(".chat_wrapper").addEventListener('click', () => {
+            // after the first click on the chat 
+            // hide record audio popup
+            this.showRecordAudioPopup = false;            
+        });
+    },
+
+    updated() {
+        this.scrollToBottomChat();
     },
 });
